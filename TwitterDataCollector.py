@@ -8,7 +8,6 @@ class TwitterDataCollector:
         self.consumer_secret = consumer_secret
         self.access_token = access_token
         self.access_secret = access_secret
-        self.authenticate()
 
     def authenticate(self):
         """The oAuth 'dance':
