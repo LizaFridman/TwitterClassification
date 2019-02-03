@@ -46,45 +46,46 @@ def preprocess(s, lowercase=False):
     return token_list
 
 
-with open(csv_path + csv_name, 'r', encoding="utf8", errors='ignore') as csvfile:
-    reader = csv.reader(csvfile, delimiter=",")
-    headers = next(reader)
-    text_idx = headers.index('text')
-    gender_idx = headers.index('gender')
-    terms_male = []
-    terms_female = []
-    terms_brand = []
+def term_freq():
+    with open(csv_path + csv_name, 'r', encoding="utf8", errors='ignore') as csvfile:
+        reader = csv.reader(csvfile, delimiter=",")
+        headers = next(reader)
+        text_idx = headers.index('text')
+        gender_idx = headers.index('gender')
+        terms_male = []
+        terms_female = []
+        terms_brand = []
 
-    for line in reader:
-        tokens = preprocess(line[text_idx])
-        for token in tokens:
-            if token not in stop:
-                # if  (token.startswith('#') and token not in stop):
-                if line[gender_idx] == 'male':
-                    terms_male.append(token)
-                else:
-                    if line[gender_idx] == 'female':
-                        terms_female.append(token)
+        for line in reader:
+            tokens = preprocess(line[text_idx])
+            for token in tokens:
+                if token not in stop:
+                    # if  (token.startswith('#') and token not in stop):
+                    if line[gender_idx] == 'male':
+                        terms_male.append(token)
                     else:
-                        if line[gender_idx] == 'brand':
-                            terms_brand.append(token)
+                        if line[gender_idx] == 'female':
+                            terms_female.append(token)
+                        else:
+                            if line[gender_idx] == 'brand':
+                                terms_brand.append(token)
 
-    # Results...
-    count_male = Counter()
-    count_male.update(terms_male)
-    pp = pprint.PrettyPrinter()
+        # Results...
+        count_male = Counter()
+        count_male.update(terms_male)
+        pp = pprint.PrettyPrinter()
 
-    print("Male most common:", sum(count_male.values()))
-    pp.pprint(count_male.most_common(20))
-    print("")
+        print("Male most common:", sum(count_male.values()))
+        pp.pprint(count_male.most_common(20))
+        print("")
 
-    count_female = Counter()
-    count_female.update(terms_female)
-    print("Female most common:", sum(count_female.values()))
-    pp.pprint(count_female.most_common(20))
-    print("")
+        count_female = Counter()
+        count_female.update(terms_female)
+        print("Female most common:", sum(count_female.values()))
+        pp.pprint(count_female.most_common(20))
+        print("")
 
-    count_brand = Counter()
-    count_brand.update(terms_brand)
-    print("Brand most common:", sum(count_brand.values()))
-    pp.pprint(count_brand.most_common(20))
+        count_brand = Counter()
+        count_brand.update(terms_brand)
+        print("Brand most common:", sum(count_brand.values()))
+        pp.pprint(count_brand.most_common(20))

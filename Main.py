@@ -1,6 +1,4 @@
-from nltk.corpus import stopwords
-from TwitterDataCollector import TwitterDataCollector
+from TweetTextMiner import term_freq
 
-print("Hello World! Here are my stopwords:\n")
-print(stopwords.words('english'))
-tc = TwitterDataCollector()
+print("Term Frequency per Gender as taken from Twitter Dataset:")
+term_freq()
