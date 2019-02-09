@@ -38,14 +38,19 @@ def main():
     test_size = round(n_samples*0.2)
     test_rows = chosen_rows[:test_size]
 
-    val_rows = chosen_rows[test_size:2*test_size]
+    #val_rows = chosen_rows[test_size:2*test_size]
     train_rows = chosen_rows[2*test_size:]
+    print("Train Rows:")
+    print(train_rows)
+    print("Test Rows:")
+    print(test_rows)
 
-    tweet_ml.extract_feats_from_text(df, train_rows,test_rows)
+    print("Encoding Labels...")
     y_train, y_test, class_names = tweet_ml.encode_class_labels(train_rows, test_rows, df)
+    print("Extracting Features...")
     X_train, X_test = tweet_ml.extract_feats_from_text(df, train_rows, test_rows)
 
-
+    print("Multinomial Naive Bayes calculation...")
     nb = MultinomialNB()
     nb = nb.fit(X_train, y_train)
     print(classification_report(y_test, nb.predict(X_test), target_names=class_names))
