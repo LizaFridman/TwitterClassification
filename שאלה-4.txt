@@ -1,0 +1,23 @@
+def XXX(text):
+    words = kpt.text_to_word_sequence(text)
+    #to edit, remove all words that not in dictionary
+    return [dictionary[word] for word in words ]
+
+
+json_file = open('./model.json', 'r')
+loaded_model_json = json_file.read()
+json_file.close()
+model = model_from_json(loaded_model_json)
+model.load_weights('model.h5')
+with open('results.csv', 'a') as file:
+    file.write(\"tweet,prediction,confidence\\n\")
+
+for tweet in text_list:
+    input = tokenizer.sequences_to_matrix([ XXX(tweet)], mode='binary')
+    pred = model.predict(input)
+    with open('results.csv', 'a') as file:
+        file.write( tweet + \",\" + str(genders[np.argmax(pred)]) + \",\" + str(pred[0][np.argmax(pred)] * 100) + '\\n')
+
+resFile= \"results.csv\"
+df = pd.read_csv(resFile, error_bad_lines=False)
+df[\"prediction\"].value_counts()
