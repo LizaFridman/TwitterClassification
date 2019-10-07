@@ -4,4 +4,4 @@ Final Project for "Web Mining and Modelling for Business Applications" course
 In this course we folloed machine learning porocess and in the final project, created a machine learning model which predicts
 the gender of tweet authers based on their tweet.
 
-![The Machine Learning Process](/images/MahcineLearningProcess.png)
+![The Machine Learning Process](/Images/MahcineLearningProcess.png)
