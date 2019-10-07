@@ -8,4 +8,3 @@ the gender of tweet authers based on their tweet.
 ![The Machine Learning Process](/Images/MahcineLearningProcess.png)
 
 ## The Course Schedule
-![The Machine Learning Process](/Images/DataMiningSchedule.png)
