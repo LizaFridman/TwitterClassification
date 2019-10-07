@@ -1,4 +1,4 @@
-# TwitterClassification
+# Twitter Classification
 Final Project for "Web Mining and Modelling for Business Applications" course 
 
 In this course we folloed machine learning porocess and in the final project, created a machine learning model which predicts
